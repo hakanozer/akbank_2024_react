@@ -1,8 +1,10 @@
 import React, { FormEvent, useState } from "react";
 import { cities } from "../utils/util";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -16,6 +18,8 @@ function Login() {
             setError('Password Empty!')
         }else {
             console.log("Form Send: ", username, password)
+            navigate('/dashboard')
+            //window.location.href = '/dashboard'
         }
     }
 
@@ -42,13 +46,15 @@ function Login() {
                         <button className="btn btn-success">Login</button>
                     </form>
 
-                    <ol>
-                    { cities.map( (item, index) =>  
-                        <React.Fragment key={index}>
-                            <li>{item}</li>
-                        </React.Fragment>
-                    )}
-                    </ol>
+                    {/* 
+                        <ol>
+                        { cities.map( (item, index) =>  
+                            <React.Fragment key={index}>
+                                <li>{item}</li>
+                            </React.Fragment>
+                        )}
+                        </ol>
+                    */}
                     
 
                 </div>
