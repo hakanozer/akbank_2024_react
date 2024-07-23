@@ -1,9 +1,10 @@
+import { IUser } from "../models/IUser"
 import { apiConfig } from "./apiConfig"
 
-export const userLogin = (username: string, password: string) => {
+export const authLogin = (username: string, password: string) => {
     const sendObj = {
         username: username,
         password: password
     }
-    return apiConfig.post('auth/login', sendObj)
+    return apiConfig.post<IUser>('auth/login', sendObj)
 }

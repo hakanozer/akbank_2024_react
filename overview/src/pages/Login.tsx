@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { cities } from "../utils/util";
 import { useNavigate } from "react-router-dom";
+import { authLogin } from "../services/userService";
 
 function Login() {
 
@@ -9,7 +10,7 @@ function Login() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    const userLogin = (evt:FormEvent) => {
+    const userLogin = async (evt:FormEvent) => {
         evt.preventDefault()
         setError('')
         if (username === '') {
@@ -17,8 +18,22 @@ function Login() {
         }else if (password === '') {
             setError('Password Empty!')
         }else {
-            console.log("Form Send: ", username, password)
-            navigate('/dashboard')
+            authLogin(username, password).then(res => {
+                const dt = res.data
+                navigate('/dashboard')
+            }).catch(err => {
+                setError('Username or Password Fail!')
+                console.log(err.message)
+            })
+           /*
+           try {
+                const call = await authLogin(username, password)
+                console.log(call.data)
+           } catch (error) {
+                setError('Username or Password Fail!')
+           }
+           */
+            console.log("this line call")
             //window.location.href = '/dashboard'
         }
     }
