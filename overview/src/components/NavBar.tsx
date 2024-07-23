@@ -1,7 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { IUser } from '../models/IUser'
 
-function NavBar() {
+function NavBar( props: {item: IUser} ) {
   return (
     <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,7 +31,7 @@ function NavBar() {
                 </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName}</a>
                 </li>
             </ul>
             <form className="d-flex" role="search">

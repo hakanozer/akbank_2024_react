@@ -8,8 +8,12 @@ export const userStore = (user: IUser) => {
 export const getUser = () => {
     const stUser = localStorage.getItem("user")
     if(stUser) {
-        const user = JSON.parse(stUser) as IUser
-        return user
+        try {
+            const user = JSON.parse(stUser) as IUser
+            return user
+        } catch (error) {
+            localStorage.removeItem('user')
+        }
     }
     return null
 }
