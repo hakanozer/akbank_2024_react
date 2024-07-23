@@ -2,12 +2,13 @@ import React, { FormEvent, useState } from "react";
 import { cities } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 import { authLogin } from "../services/userService";
+import { userStore } from "../utils/localStore";
 
 function Login() {
-
+    
     const navigate = useNavigate()
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [username, setUsername] = useState('emilys')
+    const [password, setPassword] = useState('emilyspass')
     const [error, setError] = useState('')
 
     const userLogin = async (evt:FormEvent) => {
@@ -20,6 +21,7 @@ function Login() {
         }else {
             authLogin(username, password).then(res => {
                 const dt = res.data
+                userStore(dt)
                 navigate('/dashboard')
             }).catch(err => {
                 setError('Username or Password Fail!')
@@ -53,10 +55,10 @@ function Login() {
                     }
                     <form onSubmit={userLogin}>
                         <div className="mb-3">
-                            <input required onChange={(evt) => setUsername(evt.target.value) } className="form-control" placeholder="Username" />
+                            <input value={username} required onChange={(evt) => setUsername(evt.target.value) } className="form-control" placeholder="Username" />
                         </div>
                         <div className="mb-3">
-                            <input required onChange={(evt) => setPassword(evt.target.value) } type="password" className="form-control" placeholder="Password" />
+                            <input value={password} required onChange={(evt) => setPassword(evt.target.value) } type="password" className="form-control" placeholder="Password" />
                         </div>
                         <button className="btn btn-success">Login</button>
                     </form>
