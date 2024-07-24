@@ -1,8 +1,14 @@
 import React from 'react'
 import { Product } from '../models/IProducts'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function ProductItem(props: {item: Product}) {
+
+  const navigate = useNavigate()
+  const gotoDetail = () => {
+    navigate('/detail/'+props.item.id, {state: props.item})
+  }
+
   return (
     <div className='col-sm-4 mb-3'>
         <div className="card">
@@ -12,6 +18,7 @@ function ProductItem(props: {item: Product}) {
                 <p className="card-text">{props.item.brand}</p>
                 <p className='card-text'>{props.item.price}₺</p>
                 <NavLink to={'/detail/' + props.item.id} className="btn btn-primary" >Detail</NavLink>
+                <button onClick={gotoDetail} className='btn btn-danger'>Object Detail</button>
             </div>
         </div>
     </div>

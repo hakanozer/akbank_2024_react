@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { singleProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
 
 function Detail() {
+
+  const location = useLocation()
+  useEffect(() => {
+    const data = location.state
+    if (data !== null) {
+      const prod = data as Product
+      console.log(prod)
+    }
+  }, [])
+  
 
   const [bigImage, setBigImage] = useState('')
   const [error, setError] = useState('')
