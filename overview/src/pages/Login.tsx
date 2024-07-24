@@ -22,7 +22,7 @@ function Login() {
             authLogin(username, password).then(res => {
                 const dt = res.data
                 userStore(dt)
-                navigate('/dashboard')
+                navigate('/dashboard', {replace: true})
             }).catch(err => {
                 setError('Username or Password Fail!')
                 console.log(err.message)

@@ -17,7 +17,7 @@ function ProductItem(props: {item: Product}) {
                 <h5 className="card-title">{props.item.title}</h5>
                 <p className="card-text">{props.item.brand}</p>
                 <p className='card-text'>{props.item.price}₺</p>
-                <NavLink to={'/detail/' + props.item.id} className="btn btn-primary" >Detail</NavLink>
+                <NavLink to={'/detail/' + props.item.id} className="btn btn-primary" >Detail</NavLink><span> </span>   
                 <button onClick={gotoDetail} className='btn btn-danger'>Object Detail</button>
             </div>
         </div>

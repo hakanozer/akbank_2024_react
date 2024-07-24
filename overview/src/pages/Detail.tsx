@@ -54,6 +54,7 @@ function Detail() {
                 <div className='mt-3'>
                   <img src={item.meta.qrCode} width={150} className='img-thumbnail' />
                 </div>
+                <i className="bi bi-suit-heart" style={{fontSize: 40,}}></i>
               </div>
               <div className='col-sm-6'>
                 <img src={bigImage} className='img-fluid' style={{height: 450,}}  />
