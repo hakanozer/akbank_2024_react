@@ -8,6 +8,8 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Control from './pages/Control';
+import Detail from './pages/Detail';
+import NotFound from './pages/NotFound';
 
 const routes =
 <BrowserRouter>
@@ -16,6 +18,8 @@ const routes =
     <Route path='/register' element={<Register/>} />
     <Route path='/dashboard' element={ <Control item={<Dashboard/>} /> } />
     <Route path='/profile' element={ <Control item={<Profile/>} /> } />
+    <Route path='/detail/:id' element={ <Control item={<Detail/>} /> } />
+    <Route path='*' element={<NotFound/>} />
   </Routes>
 </BrowserRouter>
 
