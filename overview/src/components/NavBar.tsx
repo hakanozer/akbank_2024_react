@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { FormEvent, useContext, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { IUser } from '../models/IUser'
 import { allLikes } from '../utils/localStore'
@@ -19,6 +19,12 @@ function NavBar( props: {item: IUser} ) {
     localStorage.removeItem('user')
     navigate('/', {replace: true})
   }  
+
+  const [q, setQ] = useState('')
+  const sendSearch = (evt: FormEvent) => {
+    evt.preventDefault()
+    navigate('/search?q='+q)
+  }
 
   return (
     <>
@@ -54,8 +60,8 @@ function NavBar( props: {item: IUser} ) {
                 <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({appContext.likes.length})</a>
                 </li>
             </ul>
-            <form className="d-flex" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <form onSubmit={sendSearch} className="d-flex" role="search">
+                <input onChange={(evt) => setQ(evt.target.value)} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
             </div>

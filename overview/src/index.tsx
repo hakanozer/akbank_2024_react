@@ -12,6 +12,7 @@ import Detail from './pages/Detail';
 import NotFound from './pages/NotFound';
 import { ContextProvider } from './contexts/AppContext';
 import Likes from './pages/Likes';
+import Search from './pages/Search';
 
 const routes =
 <BrowserRouter>
@@ -23,6 +24,7 @@ const routes =
       <Route path='/profile' element={ <Control item={<Profile/>} /> } />
       <Route path='/detail/:id' element={ <Control item={<Detail/>} /> } />
       <Route path='/likes' element={ <Control item={<Likes/>} /> } />
+      <Route path='/search' element={ <Control item={<Search/>} /> } />
       <Route path='*' element={<NotFound/>} />
     </Routes>
   </ContextProvider>
