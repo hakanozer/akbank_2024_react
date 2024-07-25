@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { singleProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
+import { likeControl } from '../utils/localStore'
 
 function Detail() {
 
@@ -33,6 +34,10 @@ function Detail() {
         })
     }
   }, [])
+
+  const fncLikeControl = (id: number) => {
+    likeControl(id)
+  }
     
   return (
     <>
@@ -54,7 +59,7 @@ function Detail() {
                 <div className='mt-3'>
                   <img src={item.meta.qrCode} width={150} className='img-thumbnail' />
                 </div>
-                <i className="bi bi-suit-heart" style={{fontSize: 40,}}></i>
+                <i onClick={ () => fncLikeControl(item.id)} role='button' className="bi bi-suit-heart" style={{fontSize: 40,}}></i>
               </div>
               <div className='col-sm-6'>
                 <img src={bigImage} className='img-fluid' style={{height: 450,}}  />

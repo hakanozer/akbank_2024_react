@@ -1,9 +1,11 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { IUser } from '../models/IUser'
+import { allLikes } from '../utils/localStore'
 
 function NavBar( props: {item: IUser} ) {
 
+  const likes = allLikes()
   const navigate = useNavigate()  
   const logout = () => {
     localStorage.removeItem('user')
@@ -38,7 +40,7 @@ function NavBar( props: {item: IUser} ) {
                 </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName}</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({likes.length})</a>
                 </li>
             </ul>
             <form className="d-flex" role="search">
