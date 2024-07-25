@@ -34,6 +34,9 @@ function NavBar( props: {item: IUser} ) {
                 <NavLink className="nav-link" aria-current="page" to='/dashboard'>Dashboard</NavLink>
                 </li>
                 <li className="nav-item">
+                <NavLink className="nav-link" to='/likes'>Likes</NavLink>
+                </li>
+                <li className="nav-item">
                 <NavLink className="nav-link" to='/profile'>Profile</NavLink>
                 </li>
                 <li className="nav-item dropdown">
