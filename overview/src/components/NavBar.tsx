@@ -10,6 +10,7 @@ function NavBar( props: {item: IUser} ) {
   useEffect(() => {
     const likes = allLikes()
     appContext.setLikes(likes)
+    console.log(appContext.token)
   }, [])
 
   

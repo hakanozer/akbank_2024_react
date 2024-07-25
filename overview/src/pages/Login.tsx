@@ -1,11 +1,13 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import { cities } from "../utils/util";
 import { useNavigate } from "react-router-dom";
 import { authLogin } from "../services/userService";
 import { userStore } from "../utils/localStore";
+import { AppContext } from "../contexts/AppContext";
 
 function Login() {
     
+    const appContext = useContext(AppContext)
     const navigate = useNavigate()
     const [username, setUsername] = useState('emilys')
     const [password, setPassword] = useState('emilyspass')
@@ -22,6 +24,7 @@ function Login() {
             authLogin(username, password).then(res => {
                 const dt = res.data
                 userStore(dt)
+                appContext.setToken(dt.token)
                 navigate('/dashboard', {replace: true})
             }).catch(err => {
                 setError('Username or Password Fail!')
