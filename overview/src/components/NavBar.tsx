@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { IUser } from '../models/IUser'
 import { allLikes } from '../utils/localStore'
+import { AppContext } from '../contexts/AppContext'
 
 function NavBar( props: {item: IUser} ) {
 
-  const likes = allLikes()
+  const appContext = useContext(AppContext)
+  useEffect(() => {
+    const likes = allLikes()
+    appContext.setLikes(likes)
+  }, [])
+
+  
   const navigate = useNavigate()  
   const logout = () => {
     localStorage.removeItem('user')
@@ -40,7 +47,7 @@ function NavBar( props: {item: IUser} ) {
                 </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({likes.length})</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({appContext.likes.length})</a>
                 </li>
             </ul>
             <form className="d-flex" role="search">

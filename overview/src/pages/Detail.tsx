@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { singleProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
-import { likeControl } from '../utils/localStore'
+import { allLikes, likeControl } from '../utils/localStore'
+import { AppContext } from '../contexts/AppContext'
 
 function Detail() {
 
@@ -35,9 +36,25 @@ function Detail() {
     }
   }, [])
 
+  const appContext = useContext(AppContext)
+  const [likeStatus, setLikeStatus] = useState(false)
   const fncLikeControl = (id: number) => {
     likeControl(id)
+    appContext.setLikes(allLikes())
   }
+
+  useEffect(() => {
+    const id = params.id
+    if (id) { 
+      const likesArr = appContext.likes
+      const index = likesArr.findIndex(item => ""+item == id)
+      if (index === -1) {
+        setLikeStatus(false)
+      }else {
+        setLikeStatus(true)
+      }
+    }
+  }, [appContext.likes])
     
   return (
     <>
@@ -59,7 +76,7 @@ function Detail() {
                 <div className='mt-3'>
                   <img src={item.meta.qrCode} width={150} className='img-thumbnail' />
                 </div>
-                <i onClick={ () => fncLikeControl(item.id)} role='button' className="bi bi-suit-heart" style={{fontSize: 40,}}></i>
+                <i onClick={ () => fncLikeControl(item.id)} role='button' className="bi bi-suit-heart" style={{fontSize: 40, color: likeStatus ? 'red' : ''}}></i>
               </div>
               <div className='col-sm-6'>
                 <img src={bigImage} className='img-fluid' style={{height: 450,}}  />
