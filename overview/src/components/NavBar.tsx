@@ -3,8 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { IUser } from '../models/IUser'
 import { allLikes } from '../utils/localStore'
 import { AppContext } from '../contexts/AppContext'
+import { useSelector } from 'react-redux'
+import { StateType } from '../useRedux/store'
 
 function NavBar( props: {item: IUser} ) {
+
+  const todos = useSelector((item: StateType) => item.TodoReducer)
 
   const appContext = useContext(AppContext)
   useEffect(() => {
@@ -60,7 +64,7 @@ function NavBar( props: {item: IUser} ) {
                 </ul>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({appContext.likes.length})</a>
+                <a className="nav-link disabled" aria-disabled="true">{props.item.firstName} {props.item.lastName} ({appContext.likes.length}) - ({todos.length})</a>
                 </li>
             </ul>
             <form onSubmit={sendSearch} className="d-flex" role="search">

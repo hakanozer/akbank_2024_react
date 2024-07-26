@@ -1,11 +1,32 @@
 import React, { FormEvent, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ITodo } from '../models/ITodo'
+import { ITodoAction } from '../useRedux/ITodoAction'
+import { TodoType } from '../useRedux/TodoType'
+import { StateType } from '../useRedux/store'
 
 function Todo() {
+
+  // Use Redux
+  const dispatch = useDispatch()
+  const todos = useSelector((item: StateType) => item.TodoReducer)
   
   const [todo, setTodo] = useState('')  
   const addTodo = (evt: FormEvent) => {
     evt.preventDefault()
-    console.log(todo)
+    
+    const item:ITodo = {
+        id: 0,
+        todo: todo,
+        completed: true,
+        userId: 0
+    }
+    const sendObj: ITodoAction = {
+        type: TodoType.TODO_ADD,
+        payload: item
+    }
+    dispatch(sendObj)
+
   }  
   return (
     <>
@@ -17,13 +38,15 @@ function Todo() {
         </form>
 
         <div className='row'>
-            <div className='col-sm-3'>
-                <div className="card">
-                    <div className="card-body">
-                        This is some text within a card body.
+            {todos.map((item, index) => 
+                <div key={index} className='col-sm-3 mb-3'>
+                    <div className="card">
+                        <div className="card-body">
+                            {item.todo}
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
 
     </>
