@@ -43,6 +43,9 @@ function NavBar( props: {item: IUser} ) {
                 <NavLink className="nav-link" to='/likes'>Likes</NavLink>
                 </li>
                 <li className="nav-item">
+                <NavLink className="nav-link" to='/todo'>Todo</NavLink>
+                </li>
+                <li className="nav-item">
                 <NavLink className="nav-link" to='/profile'>Profile</NavLink>
                 </li>
                 <li className="nav-item dropdown">
