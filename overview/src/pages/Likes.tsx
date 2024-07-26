@@ -4,6 +4,7 @@ import { singleProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
 import ProductItem from '../components/ProductItem'
 import axios from 'axios'
+import Seo from '../components/Seo'
 
 function Likes() {
 
@@ -41,6 +42,7 @@ function Likes() {
     
   return (
     <>
+        <Seo title='Likes' desc='Likes Page' />
         <h2>Likes</h2>
         <div className='row'>
         { proArr.map( (item, index) => 

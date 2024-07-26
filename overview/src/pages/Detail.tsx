@@ -4,6 +4,7 @@ import { singleProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
 import { allLikes, likeControl } from '../utils/localStore'
 import { AppContext } from '../contexts/AppContext'
+import Seo from '../components/Seo'
 
 function Detail() {
 
@@ -65,6 +66,7 @@ function Detail() {
         }
         { item && 
           <>
+            <Seo title={item.title} desc={item.description} />
             <div className='row'>
               <div className='col-sm-6'>
                 <h2>{item.title}</h2>

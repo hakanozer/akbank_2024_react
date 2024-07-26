@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { authLogin } from "../services/userService";
 import { userStore } from "../utils/localStore";
 import { AppContext } from "../contexts/AppContext";
+import Seo from "../components/Seo";
 
 function Login() {
     
@@ -46,6 +47,7 @@ function Login() {
 
     return(
         <>
+            <Seo title='User Login' desc='User Login Page' />
             <div className="row">
                 <div className="col-sm-4"></div>
                 <div className="col-sm-4">

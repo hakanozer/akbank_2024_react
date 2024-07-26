@@ -3,6 +3,7 @@ import { getAllProduct } from '../services/productService'
 import { Product } from '../models/IProducts'
 import ProductItem from '../components/ProductItem'
 import Search from '../components/Search'
+import Seo from '../components/Seo'
 
 function Dashboard() {
 
@@ -20,6 +21,7 @@ function Dashboard() {
   }, [searchData])
   return (
     <>
+        <Seo title='Product List' desc='Product List Page' />
         <h2>Products</h2>
         <Search setSearch={setSearchData} placeholder='Product Search..' />
         <div className='row'>
