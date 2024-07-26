@@ -8,3 +8,7 @@ export const getAllProduct = () => {
 export const singleProduct = (id: string) => {
     return apiConfig.get<Product>('products/'+id)
 }
+
+export const searchProduct = (q: string) => {
+    return apiConfig.get<IProducts>('products/search?q='+q)
+}
